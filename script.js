@@ -18,7 +18,8 @@ export default class SelectionRect {
     this.top_left_x = e.clientX;
     this.top_left_y = e.clientY;
 
-    this.el.style.positon = "fixed";
+    this.el.style.position = "fixed";
+    this.el.style.zIndex = "999999";
     this.el.style.border = "1px solid rgb(255 255 255 /40%)";
     this.el.style.background = "rgb(255 255 255 /20%)";
     this.el.style.left = `${this.top_left_x}px`;
