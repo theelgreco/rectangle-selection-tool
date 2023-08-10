@@ -1,5 +1,6 @@
 export default class SelectionRect {
   constructor() {
+    this.selecting = false;
     this.top_left_x = 0;
     this.top_left_y = 0;
     this.bottom_right_x = 0;
@@ -16,6 +17,7 @@ export default class SelectionRect {
 
   init(e) {
     if (e) {
+      this.selecting = true;
       this.top_left_x = e.clientX;
       this.top_left_y = e.clientY;
 
@@ -76,6 +78,8 @@ export default class SelectionRect {
   }
 
   handleMouseUp(e) {
+    this.selecting = false;
+
     const body = document.querySelector("body");
     body.removeChild(this.el);
 
