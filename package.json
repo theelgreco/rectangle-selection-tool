@@ -11,9 +11,9 @@
     "url": "git+https://github.com/theelgreco/rectangle-selection-tool.git"
   },
   "keywords": [
-    "[\"rectangle\"",
-    "\"selection\"",
-    "\"tool\"]"
+    "rectangle",
+    "selection",
+    "tool"
   ],
   "author": "Stelios Kakoliris",
   "license": "MIT",
