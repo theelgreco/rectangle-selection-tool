@@ -15,22 +15,24 @@ export default class SelectionRect {
   }
 
   init(e) {
-    this.top_left_x = e.clientX;
-    this.top_left_y = e.clientY;
+    if (e) {
+      this.top_left_x = e.clientX;
+      this.top_left_y = e.clientY;
 
-    this.el.style.position = "fixed";
-    this.el.style.zIndex = "999999";
-    this.el.style.border = "1px solid rgb(255 255 255 /40%)";
-    this.el.style.background = "rgb(255 255 255 /20%)";
-    this.el.style.left = `${this.top_left_x}px`;
-    this.el.style.top = `${this.top_left_y}px`;
-    this.el.style.width = `${this.sq_width}px`;
-    this.el.style.height = `${this.sq_height}px`;
+      this.el.style.position = "fixed";
+      this.el.style.zIndex = "999999";
+      this.el.style.border = "1px solid rgb(255 255 255 /40%)";
+      this.el.style.background = "rgb(255 255 255 /20%)";
+      this.el.style.left = `${this.top_left_x}px`;
+      this.el.style.top = `${this.top_left_y}px`;
+      this.el.style.width = `${this.sq_width}px`;
+      this.el.style.height = `${this.sq_height}px`;
 
-    const body = document.querySelector("body");
-    body.appendChild(this.el);
+      const body = document.querySelector("body");
+      body.appendChild(this.el);
 
-    document.addEventListener("mousemove", this.handleMouseMoveBound);
+      document.addEventListener("mousemove", this.handleMouseMoveBound);
+    }
   }
 
   handleMouseMove(e) {
