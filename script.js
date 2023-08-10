@@ -1,4 +1,4 @@
-class SelectionRect {
+export default class SelectionRect {
   constructor() {
     this.top_left_x = 0;
     this.top_left_y = 0;
@@ -79,5 +79,3 @@ class SelectionRect {
     document.removeEventListener("mousemove", this.handleMouseMoveBound);
   }
 }
-
-module.exports = SelectionRect;
