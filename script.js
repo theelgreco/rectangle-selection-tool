@@ -18,6 +18,7 @@ export default class SelectionRect {
   init(e) {
     if (e) {
       this.selecting = true;
+
       this.top_left_x = e.clientX;
       this.top_left_y = e.clientY;
 
@@ -34,6 +35,30 @@ export default class SelectionRect {
       body.appendChild(this.el);
 
       document.addEventListener("mousemove", this.handleMouseMoveBound);
+    }
+  }
+
+  checkOverlap(element) {
+    const elementRect = element.getBoundingClientRect();
+    const selectionRect = this.el.getBoundingClientRect();
+
+    return (
+      elementRect.left < selectionRect.right &&
+      elementRect.right > selectionRect.left &&
+      elementRect.top < selectionRect.bottom &&
+      elementRect.bottom > selectionRect.top
+    );
+  }
+
+  toggleSelectedClass(element, e) {
+    if (this.checkOverlap(element)) {
+      element.classList.add("selected");
+      element.dispatchEvent(new Event("selectionmouseover"));
+    } else {
+      if (!e.shiftKey) {
+        element.classList.remove("selected");
+        element.dispatchEvent(new Event("selectionmouseout"));
+      }
     }
   }
 
@@ -75,6 +100,11 @@ export default class SelectionRect {
 
     this.el.style.width = `${wid}px`;
     this.el.style.height = `${height}px`;
+
+    const items = document.querySelectorAll(".item");
+    items.forEach((item) => {
+      this.toggleSelectedClass(item, e);
+    });
   }
 
   handleMouseUp(e) {
